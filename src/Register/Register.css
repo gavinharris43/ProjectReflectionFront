@@ -17,11 +17,15 @@
 }
 
 #Month-Selector {
-     width: 300px;
+    width: 300px;
     height:30px;
     padding:3px;
     margin-bottom: 3px;
     border:2px solid #045CB4;
     border-radius: 50px;
+}
+
+#Cancel-Buttpn {
+    width: 100px;
 }
 

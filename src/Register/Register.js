@@ -11,10 +11,13 @@ class Register extends Component {
         this.state = {
             email:'',
             password: '',
+            confirmPassword: '',
             cohort: moment()
         };
         this.handleInputEmail = this.handleInputEmail.bind(this);
         this.handleInputPassword = this.handleInputPassword.bind(this);
+        this.handleInputConfirmPassword = this.handleInputConfirmPassword.bind(this);
+
     }
 
         handleInputEmail = (event) => {
@@ -23,6 +26,10 @@ class Register extends Component {
 
         handleInputPassword = (event) => {
             this.setState({password:event.target.value});
+        }
+
+        handleInputConfirmPassword = (event) => {
+            this.setState({confirmPassword:event.target.value});
         }
 
         _deceaseMonth = () =>
@@ -52,12 +59,14 @@ class Register extends Component {
                     <img src={logo} id = "Logo"/>
                 </div> 
                 <div className = "Register-Message">
-                    Register An Account
+                Register An Account
                 </div>
                 <div className = "Register-Form">
                     <input type = "text" id = "emailBox" placeholder = "Email Address" value={this.state.email} onChange={(this.handleInputEmail)} required/>
                     <br/>
                     <input type = "text" id = "passwordBox" placeholder = "Password" value={this.state.password} onChange={(this.handleInputPassword)} required/>
+                    <br/>
+                    <input type = "text" id = "passwordBox" placeholder = "Confirm Password" value={this.state.confirmPassword} onChange={(this.handleInputConfirmPassword)} required/>
                     <br/>
                     <div id = "Month-Selector">
                     <span onClick = {this._deceaseMonth}>{'<'}</span>
