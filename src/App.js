@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Dashboard from './Dashboard/Dashboard.js';
 import Login from './Login/Login.js';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-//import './App.css';
+import './App.css';
 
 class App extends Component {
   render() {

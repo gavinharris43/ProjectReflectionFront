@@ -31,3 +31,17 @@
     transform: rotate(360deg);
   }
 }
+
+button{
+    width:90%;
+    height:30px;
+    margin:5px;
+    background-color: white;
+    border: 1px solid #045cb4;
+    border-radius: 5px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}button:hover{
+  background-color: #045cb4;
+  color:white;
+}
