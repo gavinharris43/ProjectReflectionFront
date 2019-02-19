@@ -21,7 +21,7 @@ class Login extends Component {
         handleInputPassword = (event) => {
             this.setState({password:event.target.value});
         }
-        
+
     render() {
         return (
             <div className = "Login">
@@ -30,10 +30,15 @@ class Login extends Component {
                 </div> 
                 <div className = "Login-Form">
                     <input type = "text" id = "emailBox" placeholder = "Email Address" value={this.state.email} onChange={(this.handleInputEmail)} required/>
-                    <br></br>
+                    <br/>
                     <input type = "text" id = "passwordBox" placeholder = "Password" value={this.state.password} onChange={(this.handleInputPassword)} required/>
-                    <br></br>
-                    <input type = "button" id = "loginButton" value = "Login" onClick={this.update} id = "Login-Button"></input>
+                    <br/>
+                    <div id = "Button">
+                        <input type = "button" value = "Login" onClick={this.update} id = "Login-Button"></input> 
+                        <input type = "button" value = "Register" onClick={this.update} id = "Register-Button"></input>
+                        <br/>
+                    <Link to="/"><div>Forgot Password</div></Link>
+                    </div>
                 </div>
             </div>
         );
