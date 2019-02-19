@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
 
+
+//var CanvasJSReact = require('./canvasjs.min');
+//var CanvasJS = CanvasJSReact.CanvasJS;
+//var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+var dataPoints = [];
 class Dashboard extends Component {
 
 
@@ -14,12 +20,13 @@ class Dashboard extends Component {
     }
     for (let i = 0; i < 100; i++) {
       trainees.push(
-        <fieldset>
+        <fieldset className="TraineeCard">
           <legend>{i + 1}</legend>
           <table className="TraineeTable">
             <tbody>
               <tr>
-                <td className="TraineeCardEntry">Personal Metrics</td>
+                <td className="TraineeCardEntry">
+                </td>
                 <td className="TraineeCardEntry">Last Review</td>
                 <td className="TraineeCardEntry">Average Review</td>
               </tr>
@@ -31,7 +38,7 @@ class Dashboard extends Component {
     return (
       <div className="Dashboard">
         <div className="SideBar">
-          Cohorts
+          <header>Cohorts</header>
           {cohorts}
           <button className="SideButton" id="AllAccountsButton">All Accounts</button>
           <button className="SideButton" id="TrainersButton">Trainers</button>
