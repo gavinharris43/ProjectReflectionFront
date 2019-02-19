@@ -1,7 +1,25 @@
+.Login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .Logo {
+    width: 600px;
+    height:400px;
+}
+
+#emailBox {
+    width: 200px;
+}
+
+#passwordBox {
+    width: 200px;
+}
+
+#loginButton {
 
 }
 
-.Login-Form {
-    
-}
+
+
