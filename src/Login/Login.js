@@ -34,8 +34,8 @@ class Login extends Component {
                     <input type = "text" id = "passwordBox" placeholder = "Password" value={this.state.password} onChange={(this.handleInputPassword)} required/>
                     <br/>
                     <div id = "Button">
-                        <input type = "button" value = "Login" onClick={this.update} id = "Login-Button"></input> 
-                        <input type = "button" value = "Register" onClick={this.update} id = "Register-Button"></input>
+                        <button onClick={this.update} id = "Login-Button">Login</button> 
+                        <button onClick={this.update} id = "Register-Button">Register</button>
                         <br/>
                     <Link to="/"><div>Forgot Password</div></Link>
                     </div>
