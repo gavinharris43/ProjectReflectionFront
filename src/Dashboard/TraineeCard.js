@@ -30,7 +30,7 @@ class TraineeCard extends Component {
                     <div className="ReviewColumn" id="MetricsColumn">{this.props.metrics}</div>
                     <div className="ReviewColumn">Last Review <br /> {this.props.lastReview} /10</div>
                     <div className="ReviewColumn">Average Review <br /> {this.props.averageReview} /10</div>
-                    <div className="ReviewColumn">Red amber green</div>
+                    <div className="ReviewColumn">{RAG}</div>
                 </div>
 
             </fieldset>
