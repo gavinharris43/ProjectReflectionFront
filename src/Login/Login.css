@@ -32,11 +32,6 @@
 
 #Login-Button, #Register-Button {
     width: 100px;
-    height: 30px;
-    border-radius: 5px;
-    background-color: white;
-    border: 2px solid #045CB4;
-    margin: 5px;   
 }
 
 
