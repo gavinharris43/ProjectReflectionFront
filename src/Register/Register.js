@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import logo from '../Login/QA Consulting.png';
+import Logo from '../Login/QA Consulting.png';
 import './Register.css';
 import moment from 'moment';
 
@@ -16,46 +16,42 @@ class Register extends Component {
         };
     }
 
-        _deceaseMonth = () =>
+        DecreaseMonth = () =>
         this.setState (
             prevState => ({cohort: prevState.cohort.subtract(1, 'month')}),
-            this.filterByMonth
+            this.FilterByMonth
         )
 
-        _increaseMonth = () =>
+        IncreaseMonth = () =>
         this.setState (
             prevState => ({cohort: prevState.cohort.add(1, 'month')}),
-            this.filterByMonth
+            this.FilterByMonth
         )
 
-        _filterByMonth = () => {
+        FilterByMonth = () => {
         const cohort = this.state.cohort.clone()
-            this._runFilter({
-                minDate: cohort.startOf('month').format(),
-                maxDate: cohort.endOf('month').format(),
-            })
         }
 
     render() {
         return (
             <div className = "Register">
                 <div className = "Register-Header">
-                    <img src={logo} id = "Logo"/>
+                    <img src={Logo} id = "Logo" role = "presentation"/>
                 </div> 
                 <div className = "Register-Message">
                 Register An Account
                 </div>
                 <div className = "Register-Form">
-                    <input ref = "itemEmail" type = "text" id = "emailBox" placeholder = "Email Address" value={this.state.email} required/>
+                    <input ref = "itemEmail" type = "text" id = "emailBox" placeholder = "Email Address" required/>
                     <br/>
-                    <input ref = "itemPassword" type = "text" id = "passwordBox" placeholder = "Password" value={this.state.password} required/>
+                    <input ref = "itemPassword" type = "text" id = "passwordBox" placeholder = "Password" required/>
                     <br/>
-                    <input ref = "itemConfrimPassword" type = "text" id = "passwordBox" placeholder = "Confirm Password" value={this.state.confirmPassword} required/>
+                    <input ref = "itemConfrimPassword" type = "text" id = "passwordBox" placeholder = "Confirm Password" required/>
                     <br/>
                     <div id = "Month-Selector">
-                    <span onClick = {this._deceaseMonth}>{'<'}</span>
+                    <span onClick = {this.DecreaseMonth}>{'<'}</span>
                     <span>{this.state.cohort.format('MMM YYYY')}</span>
-                    <span onClick={this._increaseMonth}>
+                    <span onClick={this.IncreaseMonth}>
                         {this.state.cohort.clone().add(1, 'hour')> moment() ? '' : '>'}</span>
                     </div>
                     <div id = "Button">
