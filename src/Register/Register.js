@@ -14,23 +14,7 @@ class Register extends Component {
             confirmPassword: '',
             cohort: moment()
         };
-        this.handleInputEmail = this.handleInputEmail.bind(this);
-        this.handleInputPassword = this.handleInputPassword.bind(this);
-        this.handleInputConfirmPassword = this.handleInputConfirmPassword.bind(this);
-
     }
-
-        handleInputEmail = (event) => {
-            this.setState({email:event.target.value});
-        }
-
-        handleInputPassword = (event) => {
-            this.setState({password:event.target.value});
-        }
-
-        handleInputConfirmPassword = (event) => {
-            this.setState({confirmPassword:event.target.value});
-        }
 
         _deceaseMonth = () =>
         this.setState (
@@ -62,11 +46,11 @@ class Register extends Component {
                 Register An Account
                 </div>
                 <div className = "Register-Form">
-                    <input type = "text" id = "emailBox" placeholder = "Email Address" value={this.state.email} onChange={(this.handleInputEmail)} required/>
+                    <input ref = "itemEmail" type = "text" id = "emailBox" placeholder = "Email Address" value={this.state.email} required/>
                     <br/>
-                    <input type = "text" id = "passwordBox" placeholder = "Password" value={this.state.password} onChange={(this.handleInputPassword)} required/>
+                    <input ref = "itemPassword" type = "text" id = "passwordBox" placeholder = "Password" value={this.state.password} required/>
                     <br/>
-                    <input type = "text" id = "passwordBox" placeholder = "Confirm Password" value={this.state.confirmPassword} onChange={(this.handleInputConfirmPassword)} required/>
+                    <input ref = "itemConfrimPassword" type = "text" id = "passwordBox" placeholder = "Confirm Password" value={this.state.confirmPassword} required/>
                     <br/>
                     <div id = "Month-Selector">
                     <span onClick = {this._deceaseMonth}>{'<'}</span>
