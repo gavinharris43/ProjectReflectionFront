@@ -75,7 +75,7 @@ class Register extends Component {
                         {this.state.cohort.clone().add(1, 'hour')> moment() ? '' : '>'}</span>
                     </div>
                     <div id = "Button">
-                        <button onClick={this.update} id = "Register-Button">Register</button>
+                        <button onClick={this.update} id = "Register-Button-Two">Register</button>
                         <button onClick={this.update} id = "Cancel-Button">Cancel</button>
                         <br/>
                     </div>
