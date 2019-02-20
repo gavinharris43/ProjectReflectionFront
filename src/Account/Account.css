@@ -1,0 +1,40 @@
+.AccountPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10%;
+    margin-left: auto;
+    -webkit-animation: fadein 4s;
+    animation: fadein 4s;
+    text-align: center;
+}
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.AccountLogo {
+    width: 40%;
+    height:35%;
+    margin-bottom: 2%;
+}
+.InputBoxContainer{
+    width: 35vh;
+    height:5%;
+}
+.AccountInput {
+    text-align: center;
+    width:90%;
+    font-size: 2vh;
+    padding:2%;
+    margin-bottom: 1%;
+    border:2px solid #045CB4;
+    border-radius: 50px;
+}
+#Month-Selector{
+    margin-top:2%;
+    margin-bottom:2%;
+}
+
+
+
+

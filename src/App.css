@@ -11,3 +11,13 @@ button{
   background-color: #045cb4;
   color:white;
 }
+h{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+fieldset{
+    border: 2px solid #045cb4;
+    border-radius: 20px;  
+    margin-bottom: 2%;
+    padding: 2%;
+}
