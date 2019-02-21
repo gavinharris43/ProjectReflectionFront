@@ -11,10 +11,6 @@ class Register extends Component {
     constructor() {
         super();
         this.state = {
-            email: '',
-            password: '',
-            confirmPassword: '',
-            cohort: ''
         };
         this.update = () => {
 
@@ -22,25 +18,16 @@ class Register extends Component {
     }
 
     createAccount = (e) => {
-        /*axios.post(BaseURL + CreateTraineeURL, {
+        axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL, REFLECTIONURL.CREARETRAINEEURL, {
+            firstName: this.refs.itemFirstName.value,
+            lastName: this.refs.itemLastName.value,
             email: this.refs.itemEmail.value,
             password: this.refs.itemPassword.value,
             confirmPassword: this.refs.itemConfirmPasword.value,
-            //cohort: this.refs.itemCohort.value,
+            startDate: this.refs.itemMonth.value
         }).then(response => {
-            //this.update();
-        });*/
-
-        this.setState({
-            email: this.refs.itemEmail.value,
-            password: this.refs.itemPassword.value,
-            confirmPassword: this.refs.itemConfirmPassword.value,
-            cohort: this.refs.itemMonth.value
         });
-        console.log(this.state.email);
-        console.log(this.state.password);
-        console.log(this.state.confirmPassword);
-        console.log(this.state.cohort);
+
 
     }
 
@@ -62,7 +49,7 @@ class Register extends Component {
                     <input className="AccountInput" ref="itemMonth" type="month" required />
                 </div>
                 <div>
-                    <button onClick={this.CreateAccount} id="Register-Button-Two">Register</button>
+                    <button onClick={this.createAccount} id="Register-Button-Two">Register</button>
                     <Link to="/">
                         <button onClick={this.update} id="Cancel-Button">Cancel</button>
                     </Link>
