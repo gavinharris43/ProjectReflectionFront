@@ -15,6 +15,7 @@ class App extends Component {
           <Route path='/register' component={Register} />
           <Route path='/dashboard' component={TrainerArea} />
           <Route path='/feedbackform' component={FeedbackForm} />
+
         </div>
       </BrowserRouter>
     );
