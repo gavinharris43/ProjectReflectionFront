@@ -1,9 +1,9 @@
 
 
 export const REFLECTIONURL = {
-    BASEURL: "http://localhost:8081",
-    APIURL:"/api",
-
+    BASEURL: "http://localhost",
+    WEBSITE:":3000",
+    APIURL:":8081/api",
     //Trainee
     CREATETRAINEEURL: "/createTrainee",
     READTRAINEEURL: "/getAllTrainees",
