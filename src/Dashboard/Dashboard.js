@@ -7,19 +7,20 @@ class Dashboard extends Component {
     for (let i = 0; i < 30; i++) {
       trainees.push(
         <TraineeCard
+          id={i}
           name={i + 1}
           metrics="Metrics"
-          lastReview={i%10}
-          averageReview={i%10}
+          lastReview={i % 10}
+          averageReview={i % 10}
         />
       )
     }
     return (
-        <div className="MainBar">
-          <header>Trainees</header>
-          Search
-          {trainees}
-        </div>
+      <div className="MainBar">
+        <h>Trainees</h>
+        <div>Search</div>
+        {trainees}
+      </div>
     );
   }
 }

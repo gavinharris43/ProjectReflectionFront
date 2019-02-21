@@ -1,42 +1,31 @@
 import React, { Component } from 'react';
-import './Dashboard.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-class TraineeCard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
+function TraineeCard({ id, name, metrics, lastReview, averageReview, match }) {
+    let RAG = [];
+    if (lastReview > 7) {
+        RAG.push(<div className="RAG" id="Green" />);
+    } else if (lastReview < 4) {
+        RAG.push(<div className="RAG" id="Red" />);
+    } else {
+        RAG.push(<div className="RAG" id="Amber" />);
     }
-    render() {
 
-        let RAG = [];
-        if (this.props.lastReview > 7) {
-            RAG.push(<div className="RAG" id="Green" />);
-        } else if (this.props.lastReview < 4) {
-            RAG.push(<div className="RAG" id="Red" />);
-        } else {
-            RAG.push(<div className="RAG" id="Amber" />);
-        }
+    return (
+        <fieldset className="TraineeCard">
+            <legend>
+                <Link to={"/dashboard/trainee/:" + id}>{name}</Link>
+            </legend>
 
-        return (
-            <fieldset className="TraineeCard">
-                <legend>
-                    <Link to={"/dashboard/trainee"}>{this.props.name}</Link>
-                </legend>
+            <div className="row">
+                <div className="ReviewColumn" id="MetricsColumn">{metrics}</div>
+                <div className="ReviewColumn">Last Review <br /> {lastReview} /10</div>
+                <div className="ReviewColumn">Average Review <br /> {averageReview} /10</div>
+                <div className="ReviewColumn">{RAG}</div>
+            </div>
 
-                <div className="row">
-                    <div className="ReviewColumn" id="MetricsColumn">{this.props.metrics}</div>
-                    <div className="ReviewColumn">Last Review <br /> {this.props.lastReview} /10</div>
-                    <div className="ReviewColumn">Average Review <br /> {this.props.averageReview} /10</div>
-                    <div className="ReviewColumn">{RAG}</div>
-                </div>
-
-            </fieldset>
-        );
-    }
+        </fieldset>
+    );
 }
-
 
 export default TraineeCard;
