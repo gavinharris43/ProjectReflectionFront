@@ -18,17 +18,15 @@ class Register extends Component {
     }
 
     createAccount = (e) => {
-        axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL, REFLECTIONURL.CREARETRAINEEURL, {
+        axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.CREARETRAINEEURL, {
             firstName: this.refs.itemFirstName.value,
             lastName: this.refs.itemLastName.value,
             email: this.refs.itemEmail.value,
             password: this.refs.itemPassword.value,
-            confirmPassword: this.refs.itemConfirmPasword.value,
+            confirmPassword: this.refs.itemConfirmPassword.value,
             startDate: this.refs.itemMonth.value
         }).then(response => {
         });
-
-
     }
 
     render() {

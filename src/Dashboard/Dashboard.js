@@ -10,7 +10,7 @@ class Dashboard extends Component {
       trainees: "Example",
     }
     this.update = () => {
-      axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL, REFLECTIONURL.READTRAINEEURL)
+      axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
         .then(res => {
           //const items = res.data.filter(o => Object.keys(o).some(k => String(o[k]).toLowerCase().includes(this.refs.userInput.value.toLowerCase())));
           //let items = res.data.filter(o => o.equipmentName.toLowerCase().includes(this.refs.userNameInput.value.toLowerCase()));
@@ -23,17 +23,18 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL, REFLECTIONURL.READTRAINEEURL)
+    axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
       .then(res => {
+
         const trainees = res.data;
         this.setState({ trainees });
       })
   }
 
   render() {
-    let trainees = [];
+    let trainee = [];
     for (let i = 0; i < this.state.trainees.length; i++) {
-      trainees.push(
+      trainee.push(
         <TraineeCard
           id={this.state.trainees[i].traineeId}
           name={this.state.trainees[i].firstName + ' ' + this.state.trainees[i].lastName}
@@ -47,7 +48,7 @@ class Dashboard extends Component {
       <div className="MainBar">
         <h>Trainees</h>
         <div>Search</div>
-        {trainees}
+        {trainee}
       </div>
     );
   }
