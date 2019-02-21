@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Account.css';
 import Logo from './QA Consulting.png';
 import moment from 'moment';
@@ -34,8 +34,8 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="AccountPage">
-                <img className="AccountLogo" src={Logo}  role="presentation" />
+            <div className = "Page" id="RegisterPage">
+                <img className="Logo" src={Logo}  role="presentation" />
                 <h>Register An Account</h>
                 <div className="AccountForm">
                     <div className="InputBoxContainer">
@@ -61,6 +61,7 @@ class Register extends Component {
                         <button onClick={this.update} id="Cancel-Button">Cancel</button>
                     </Link>
                     <Link to="/dashboard"><div>Dashboard for now</div></Link>
+                    <Link to="/feedbackform"><div>Feedback for now</div></Link>
                 </div>
 
             </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Account.css';
 import logo from './QA Consulting.png'
 
@@ -24,8 +24,8 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="AccountPage">
-                <img className="AccountLogo" src={logo} />
+            <div className = "Page" id="LoginPage">
+                <img className="Logo" src={logo} />
                 <div className="AccountForm">
                     <div className="InputBoxContainer">
                         <input className="AccountInput" type="email" id="emailBox" placeholder="Email Address" required />
@@ -43,6 +43,7 @@ class Login extends Component {
                 <div>
                     <Link to="/"><div>Forgot Password</div></Link>
                     <Link to="/dashboard"><div>Dashboard for now</div></Link>
+                    <Link to="/feedbackform"><div>Feedback for now</div></Link>
                 </div>
             </div>
         );

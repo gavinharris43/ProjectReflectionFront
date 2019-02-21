@@ -19,7 +19,7 @@ function TrainerArea({ match }) {
             </div>
             <Route exact path={match.path + '/'} component={Dashboard} />
             <Route path={match.path + '/trainee'} component={TraineeFull} />
-            <Route path={match.path + '/:traineeId'} component={Trainee} />
+            <Route exact path={match.path + '/:traineeId'} component={Trainee} />
         </div>
     );
 }
