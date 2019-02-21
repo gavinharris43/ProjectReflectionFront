@@ -25,7 +25,6 @@ class Dashboard extends Component {
   componentDidMount() {
     axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
       .then(res => {
-
         const trainees = res.data;
         this.setState({ trainees });
       })
@@ -39,8 +38,8 @@ class Dashboard extends Component {
           id={this.state.trainees[i].traineeId}
           name={this.state.trainees[i].firstName + ' ' + this.state.trainees[i].lastName}
           metrics="Metrics"
-          lastReview={i % 10}
-          averageReview={i % 10}
+          lastReview={this.state.trainees[i].mostRecentHowsYourWeek}
+          averageReview={this.state.trainees[i].averageHowsYourWeek}
         />
       )
     }
