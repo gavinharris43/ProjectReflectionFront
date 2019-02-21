@@ -38,7 +38,7 @@ class Dashboard extends Component {
           id={this.state.trainees[i].traineeId}
           name={this.state.trainees[i].firstName + ' ' + this.state.trainees[i].lastName}
           metrics="Metrics"
-          lastReview={this.state.trainees[i].mostRecentHowsYourWeek}
+          lastReview={this.state.trainees[i].currentHowsYourWeek}
           averageReview={this.state.trainees[i].averageHowsYourWeek}
         />
       )
