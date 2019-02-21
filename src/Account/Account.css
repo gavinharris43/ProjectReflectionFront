@@ -26,6 +26,12 @@
     margin-bottom:2%;
 }
 
+#firstNameBox, #lastNameBox{
+    width:41%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
 
 
 

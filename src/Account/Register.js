@@ -38,6 +38,10 @@ class Register extends Component {
                 <header>Register An Account</header>
                 <div className="AccountForm">
                     <div className="InputBoxContainer">
+                        <input className="AccountInput" ref="itemFirstName" type="text" id="firstNameBox" placeholder="First Name" required />
+                        <input className="AccountInput" ref="itemLastName" type="text" id="lastNameBox" placeholder="Last Name" required />
+                    </div>
+                    <div className="InputBoxContainer">
                         <input className="AccountInput" ref="itemEmail" type="email" id="emailBox" placeholder="Email Address" required />
                     </div>
                     <div className="InputBoxContainer">
