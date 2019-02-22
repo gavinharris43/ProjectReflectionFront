@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 function TraineeCard({ id, name, metrics, lastReview, averageReview, match }) {
     let RAG = [];
     if (lastReview > 7) {
-        RAG.push(<div className="RAG" id="Green" />);
+        RAG.push(<div className="RAG" key={'Trainee: ' + id} id="Green" />);
     } else if (lastReview < 4) {
-        RAG.push(<div className="RAG" id="Red" />);
+        RAG.push(<div className="RAG" key={'Trainee: ' + id} id="Red" />);
     } else {
-        RAG.push(<div className="RAG" id="Amber" />);
+        RAG.push(<div className="RAG" key={'Trainee: ' + id} id="Amber" />);
     }
 
     return (

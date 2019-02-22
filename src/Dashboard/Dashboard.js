@@ -34,18 +34,19 @@ class Dashboard extends Component {
     let trainee = [];
     for (let i = 0; i < this.state.trainees.length; i++) {
       trainee.push(
-        <TraineeCard
-          id={this.state.trainees[i].traineeId}
-          name={this.state.trainees[i].firstName + ' ' + this.state.trainees[i].lastName}
-          metrics="Metrics"
-          lastReview={this.state.trainees[i].currentHowsYourWeek}
-          averageReview={this.state.trainees[i].averageHowsYourWeek}
-        />
+          <TraineeCard
+            key={'Trainee: ' + i}
+            id={this.state.trainees[i].traineeId}
+            name={this.state.trainees[i].firstName + ' ' + this.state.trainees[i].lastName}
+            metrics="Metrics"
+            lastReview={this.state.trainees[i].currentHowsYourWeek}
+            averageReview={this.state.trainees[i].averageHowsYourWeek}
+          />
       )
     }
     return (
       <div className="MainBar">
-        <h>Trainees</h>
+        <header>Trainees</header>
         <div>Search</div>
         {trainee}
       </div>
