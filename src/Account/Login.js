@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {REFLECTIONURL} from '../Constants.js'
-
-import logo from './QA Consulting.png'
 import './Account.css';
-
-
+import logo from './QA Consulting.png';
+import axios from 'axios';
+import {REFLECTIONURL} from '../Constants'
 
 class Login extends Component {
 
@@ -17,6 +15,34 @@ class Login extends Component {
             password: ''
         };
     }
+  
+        checkUser = () => {
+
+            axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL+ '/login', {
+              email: this.state.email,
+              password: this.state.password
+            })
+              .then((response) => {
+                if (response.data[0] == this.state.email) {
+                  sessionStorage.setItem("loggedUser", response.data[0]);
+                  window.location.reload();
+                }
+              })
+              .catch(function (error) {
+              });
+          }
+        
+  handleSubmit = (e) => {
+    this.checkUser();
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
+
+
 
     render() {
         return (
@@ -24,15 +50,18 @@ class Login extends Component {
                 <img className="Logo" src={logo} />
                 <div className="AccountForm">
                     <div className="InputBoxContainer">
-                        <input className="AccountInput" type="email" id="emailBox" placeholder="Email Address" required />
+                    <h>{sessionStorage.getItem("loggedUser")===null ?"Please Sign in" : sessionStorage.getItem("loggedUser")+ " Logged In"  }</h>
+                        <input className="AccountInput" onChange={this.handleChange} type="email" id="emailBox" placeholder="Email Address" required />
                     </div>
                     <div className="InputBoxContainer">
-                        <input className="AccountInput" type="password" id="passwordBox" placeholder="Password" required />
+                        <input className="AccountInput" onChange={this.handleChange}  type="password" id="passwordBox" placeholder="Password" required />
                     </div>
                 </div>
                 <div>
-                    <button onClick={this.update} id="Login-Button">Login</button>
-                    <Link to={"/register"}>
+
+                    <button onClick={this.handleSubmit}  id="Login-Button">Login</button>
+                    <Link to="/register">
+                      
                         <button onClick={this.update} id="Register-Button">Register</button>
                     </Link>
                 </div>
