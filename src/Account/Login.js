@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Account.css';
 import logo from './QA Consulting.png';
-import {REFLECTIONURL} from '../Constants'
+import { REFLECTIONURL } from '../Constants'
 
 class Login extends Component {
 
@@ -14,53 +14,53 @@ class Login extends Component {
             password: ""
         };
     }
-  
-        checkUser = () => {
 
-            axios.put(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL+ '/getTrainee', {
-              email: this.state.email,
-              password: this.state.password
-            })
-              .then((response) => {
+    checkUser = () => {
+
+        axios.put(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.VERIFYLOGINDETAILS, {
+            email: this.state.email,
+            password: this.state.password
+        })
+            .then((response) => {
                 if (response.data.email === this.state.email) {
-                  sessionStorage.setItem("loggedUser", response.data.email);
-                  window.location.reload();
+                    sessionStorage.setItem("loggedUser", response.data.email);
+                    window.location.reload();
                 }
-              })
-              .catch(function (error) {
-              });
-          }
-        
-  handleSubmit = (e) => {
-    this.checkUser();
-  }
+            })
+            .catch(function (error) {
+            });
+    }
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
-    })
-  }
+    handleSubmit = (e) => {
+        this.checkUser();
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
 
 
 
     render() {
         return (
-            <div className = "Page" id="LoginPage">
+            <div className="Page" id="LoginPage">
                 <img className="Logo" src={logo} alt="presentation" />
                 <div className="AccountForm">
                     <div className="InputBoxContainer">
-                    <header>{sessionStorage.getItem("loggedUser")===null ?"Please Sign in" : sessionStorage.getItem("loggedUser")+ " Logged In"  }</header>
+                        <header>{sessionStorage.getItem("loggedUser") === null ? "Please Sign in" : sessionStorage.getItem("loggedUser") + " Logged In"}</header>
                         <input className="AccountInput" onChange={this.handleChange} type="email" id="email" placeholder="Email Address" required />
                     </div>
                     <div className="InputBoxContainer">
-                        <input className="AccountInput" onChange={this.handleChange}  type="password" id="password" placeholder="Password" required />
+                        <input className="AccountInput" onChange={this.handleChange} type="password" id="password" placeholder="Password" required />
                     </div>
                 </div>
                 <div>
 
-                    <button onClick={this.handleSubmit}  id="Login-Button">Login</button>
+                    <button onClick={this.handleSubmit} id="Login-Button">Login</button>
                     <Link to="/register">
-                      
+
                         <button onClick={this.update} id="Register-Button">Register</button>
                     </Link>
                 </div>
