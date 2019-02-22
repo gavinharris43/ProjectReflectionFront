@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Account.css';
 import logo from './QA Consulting.png';
@@ -14,6 +15,7 @@ class Login extends Component {
             password: ''
         };
     }
+  
         checkUser = () => {
 
             axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL+ '/login', {
@@ -40,7 +42,7 @@ class Login extends Component {
     })
   }
 
-        
+
 
     render() {
         return (
@@ -56,15 +58,17 @@ class Login extends Component {
                     </div>
                 </div>
                 <div>
+
                     <button onClick={this.handleSubmit}  id="Login-Button">Login</button>
                     <Link to="/register">
+                      
                         <button onClick={this.update} id="Register-Button">Register</button>
                     </Link>
                 </div>
                 <div>
-                    <Link to="/"><div>Forgot Password</div></Link>
-                    <Link to="/dashboard"><div>Dashboard for now</div></Link>
-                    <Link to="/feedbackform"><div>Feedback for now</div></Link>
+                    <Link to={"/"}><div>Forgot Password</div></Link>
+                    <Link to={"/dashboard"}><div>Dashboard for now</div></Link>
+                    <Link to={"/feedbackform"}><div>Feedback for now</div></Link>
                 </div>
             </div>
         );
