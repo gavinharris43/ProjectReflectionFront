@@ -10,20 +10,20 @@ class Login extends Component {
     constructor() {
         super();
         this.state = {
-            email: '',
-            password: ''
+            email: "",
+            password: ""
         };
     }
   
         checkUser = () => {
 
-            axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL+ '/login', {
+            axios.put(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL+ '/getTrainee', {
               email: this.state.email,
               password: this.state.password
             })
               .then((response) => {
-                if (response.data[0] === this.state.email) {
-                  sessionStorage.setItem("loggedUser", response.data[0]);
+                if (response.data.email === this.state.email) {
+                  sessionStorage.setItem("loggedUser", response.data.email);
                   window.location.reload();
                 }
               })
@@ -50,10 +50,10 @@ class Login extends Component {
                 <div className="AccountForm">
                     <div className="InputBoxContainer">
                     <header>{sessionStorage.getItem("loggedUser")===null ?"Please Sign in" : sessionStorage.getItem("loggedUser")+ " Logged In"  }</header>
-                        <input className="AccountInput" onChange={this.handleChange} type="email" id="emailBox" placeholder="Email Address" required />
+                        <input className="AccountInput" onChange={this.handleChange} type="email" id="email" placeholder="Email Address" required />
                     </div>
                     <div className="InputBoxContainer">
-                        <input className="AccountInput" onChange={this.handleChange}  type="password" id="passwordBox" placeholder="Password" required />
+                        <input className="AccountInput" onChange={this.handleChange}  type="password" id="password" placeholder="Password" required />
                     </div>
                 </div>
                 <div>
