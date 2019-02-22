@@ -46,7 +46,7 @@ class Login extends Component {
     render() {
         return (
             <div className = "Page" id="LoginPage">
-                <img className="Logo" src={logo} />
+                <img className="Logo" src={logo} alt="presentation" />
                 <div className="AccountForm">
                     <div className="InputBoxContainer">
                     <header>{sessionStorage.getItem("loggedUser")===null ?"Please Sign in" : sessionStorage.getItem("loggedUser")+ " Logged In"  }</header>
