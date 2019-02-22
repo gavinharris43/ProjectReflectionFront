@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../Account/QA Consulting.png'
 import './FeedbackForm.css'
 
@@ -51,8 +51,8 @@ class FeedbackForm extends Component {
     render() {
         return (
             <div className="Page" id="FeedbackPage">
-                <img className="Logo" src={logo} />
-                <h>Trainee Feedback Form</h>
+                <img className="Logo" src={logo} alt="presentation" />
+                <header>Trainee Feedback Form</header>
                 <fieldset className="Content">
                     Please ensure the answers to this form follow S.M.A.R.T Goals<br />
                     S: Specific<br />

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { REFLECTIONURL } from '../Constants.js'
 import { Link } from 'react-router-dom';
 import Logo from './QA Consulting.png';
-import moment from 'moment';
 import './Account.css';
 
 class Register extends Component {
@@ -32,7 +31,7 @@ class Register extends Component {
     render() {
         return (
             <div className="Page" id="RegisterPage">
-                <img className="Logo" src={Logo} role="presentation" />
+                <img className="Logo" src={Logo} alt="presentation" />
                 <header>Register An Account</header>
                 <div className="AccountForm">
                     <div className="InputBoxContainer">

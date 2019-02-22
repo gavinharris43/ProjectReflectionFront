@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Dashboard.css';
 import Dashboard from './Dashboard.js'
 import TraineeFull from './TraineeFull.js';
-import Trainee from './Trainee.js';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+
 function TrainerArea({ match }) {
     let cohorts = [];
     for (let i = 0; i < 12; i++) {
-        cohorts.push(<Link to={'/dashboard'}><button>Cohort: {i + 1}</button></Link>)
+        cohorts.push(
+            <Link to={'/dashboard'} key={'Cohort: ' + i}>
+                <button>Cohort: {i + 1}</button>
+            </Link>
+        )
     }
     return (
         <div className="Dashboard">
@@ -19,7 +23,6 @@ function TrainerArea({ match }) {
             </div>
             <Route exact path={match.path + '/'} component={Dashboard} />
             <Route path={match.path + '/trainee'} component={TraineeFull} />
-            <Route exact path={match.path + '/:traineeId'} component={Trainee} />
         </div>
     );
 }
