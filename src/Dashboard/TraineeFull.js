@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+//import { BrowserRouter, Route, Link } from 'react-router-dom';
 class TraineeFull extends Component {
     render() {
         let reviews = [];
@@ -14,7 +14,7 @@ class TraineeFull extends Component {
         }
         for (let i = 0; i < 12; i++) {
             reviews.push(
-                <fieldset>
+                <fieldset key={'Trainee: ' + i + ' Review ' + i}>>
                     <legend>Review Date</legend>
                     <div className="ReviewColumn">
                         How did you feel your week went? <br/><br/>
