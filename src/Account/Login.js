@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Account.css';
 import logo from './QA Consulting.png';
-import axios from 'axios';
 import {REFLECTIONURL} from '../Constants'
 
 class Login extends Component {
@@ -23,7 +22,7 @@ class Login extends Component {
               password: this.state.password
             })
               .then((response) => {
-                if (response.data[0] == this.state.email) {
+                if (response.data[0] === this.state.email) {
                   sessionStorage.setItem("loggedUser", response.data[0]);
                   window.location.reload();
                 }
@@ -50,7 +49,7 @@ class Login extends Component {
                 <img className="Logo" src={logo} />
                 <div className="AccountForm">
                     <div className="InputBoxContainer">
-                    <h>{sessionStorage.getItem("loggedUser")===null ?"Please Sign in" : sessionStorage.getItem("loggedUser")+ " Logged In"  }</h>
+                    <header>{sessionStorage.getItem("loggedUser")===null ?"Please Sign in" : sessionStorage.getItem("loggedUser")+ " Logged In"  }</header>
                         <input className="AccountInput" onChange={this.handleChange} type="email" id="emailBox" placeholder="Email Address" required />
                     </div>
                     <div className="InputBoxContainer">
