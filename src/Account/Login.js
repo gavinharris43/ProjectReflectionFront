@@ -23,6 +23,7 @@ class Login extends Component {
         })
             .then((response) => {
                 if (response.data.email === this.state.email) {
+
                     sessionStorage.setItem("loggedUser", response.data.email );
                     sessionStorage.setItem("type", response.data.type);
 
@@ -35,6 +36,7 @@ class Login extends Component {
                     else{
                     window.location.reload();
                     }
+
                 }
             })
             .catch(function (error) {
