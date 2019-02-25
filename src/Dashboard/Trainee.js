@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import TraineeFull from './TraineeFull.js';
 
 function Trainee({ match }) {

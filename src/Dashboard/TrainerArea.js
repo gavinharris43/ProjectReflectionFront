@@ -1,8 +1,8 @@
 import React from 'react';
 import './Dashboard.css';
 import Dashboard from './Dashboard.js'
-import TraineeFull from './TraineeFull.js';
 import Trainee from './Trainee.js';
+import Logout from '../Logout.js'
 import { Route, Link } from 'react-router-dom';
 
 function TrainerArea({ match }) {
@@ -21,6 +21,7 @@ function TrainerArea({ match }) {
                 {cohorts}
                 <Link to={'/dashboard'}><button id="AllAccountsButton">All Accounts</button></Link>
                 <Link to={'/dashboard/trainers'}><button id="TrainersButton">Trainers</button></Link>
+                <Link to={'/logout'}><button id="Logout">Logout</button></Link>
             </div>
             <Route exact path={match.path + '/'} component={Dashboard} />
             <Route path={match.path + '/trainee/:id'} component={Trainee} />

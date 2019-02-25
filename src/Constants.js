@@ -27,4 +27,7 @@ export const REFLECTIONURL = {
     DELETECOHORTURL:"/deleteCohort",
     //FORM
     CREATEFORMURL:"/createForm",
+    //userType
+    TRAINER:"Trainer",
+    TRAINEE:"Trainee"
 }

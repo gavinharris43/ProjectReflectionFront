@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../Account/QA Consulting.png'
+import axios from 'axios'
+import { REFLECTIONURL } from '../Constants.js'
 import './FeedbackForm.css'
+import Logout from '../Logout';
 
 class FeedbackForm extends Component {
 
@@ -14,6 +17,7 @@ class FeedbackForm extends Component {
             whatWentBad: this.refs.whatWentBad.value,
             howToStopDoingBad: this.refs.howToStopDoingBad.value
         }).then(response => {
+            Logout();
         });
     }
 
