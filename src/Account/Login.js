@@ -23,8 +23,20 @@ class Login extends Component {
         })
             .then((response) => {
                 if (response.data.email === this.state.email) {
-                    sessionStorage.setItem("loggedUser", response.data.email);
+
+                    sessionStorage.setItem("loggedUser", response.data.email );
+                    sessionStorage.setItem("type", response.data.type);
+
+                 if(sessionStorage.getItem("type"===REFLECTIONURL.TRAINEE ) || sessionStorage.getItem("loggedUser").endsWith("@academytrainee.com")){
+                        window.location.href="./feedbackform";
+                    } 
+                    else if (sessionStorage.getItem("type"===REFLECTIONURL.TRAINER) || sessionStorage.getItem("loggedUser").endsWith("@qa.com")){
+                        window.location.href="./dashboard";
+                    }
+                    else{
                     window.location.reload();
+                    }
+
                 }
             })
             .catch(function (error) {
