@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+
+import React from 'react';
 import TraineeFull from './TraineeFull.js';
+
 
 function Trainee({ match }) {
     return (
