@@ -9,20 +9,49 @@ class TraineeFull extends Component {
         this.state = {
             trainee: ""
         }
+        this.update = () => {
+            axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
+                .then(res => {
+                    let trainee = res.data.filter(o => String(o.traineeId) === String(this.props.id));
+                    trainee = trainee[0];
+                    this.setState({ trainee });
+                })
+        }
     }
     componentDidMount() {
         axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
             .then(res => {
-                const trainees = res.data;
-                this.setState({ trainees });
+                let trainee = res.data.filter(o => String(o.traineeId) === String(this.props.id));
+                trainee = trainee[0];
+                this.setState({ trainee });
             })
     }
 
     deleteEntry = () => {
-        axios.delete(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.DELETETRAINEEURL + this.props.id)
+        axios.delete(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.DELETETRAINEEURL + "/" + this.props.id)
             .then(res => {
-                window.location.href='/dashboard'
+                window.location.href = '/dashboard'
             });
+    }
+
+    updateEntry = (e) => {
+        e.preventDefault();
+        axios.put(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.UPDATETRAINEEURL + "/" + this.props.id, {
+            firstName: this.refs.itemFirstName.value,
+            lastName: this.refs.itemLastName.value,
+            email: this.refs.itemEmail.value,
+            password: this.refs.itemPassword.value,
+            confirmPassword: this.refs.itemConfirmPassword.value,
+            startDate: this.refs.itemMonth.value
+        }).then(response => {
+            this.update();
+        });
+        firstName: this.refs.itemFirstName.value = ""
+        lastName: this.refs.itemLastName.value = ""
+        email: this.refs.itemEmail.value = ""
+        password: this.refs.itemPassword.value = ""
+        confirmPassword: this.refs.itemConfirmPassword.value = ""
+        startDate: this.refs.itemMonth.value = ""
     }
 
     render() {
@@ -71,7 +100,26 @@ class TraineeFull extends Component {
                         Metrics</div>
                     {reviews}
                 </fieldset>
-                <button onClick={this.deleteEntry}>Delete</button>
+                <fieldset className="">
+                    <legend>Modify</legend>
+                    <form className="UpdateForm">
+                        <div>
+                            <input className="AccountUpdate" ref="itemFirstName" type="text" id="" placeholder="First Name" required />
+                            <input className="AccountUpdate" ref="itemLastName" type="text" id="" placeholder="Last Name" required />
+                        </div>
+                        <input className="AccountUpdate" ref="itemEmail" type="email" id="emailBox" placeholder="Email Address" required />
+                        <div>
+                            <input className="AccountUpdate" ref="itemPassword" type="password" id="passwordBox" placeholder="Password" required />
+                            <input className="AccountUpdate" ref="itemConfirmPassword" type="password" id="passwordBoxConfirm" placeholder="Confirm Password" required />
+                        </div>
+                        <input className="AccountUpdate" ref="itemMonth" type="month" required />
+                        <div>
+                            <button onClick={this.deleteEntry}>Delete</button>
+                            <button onClick={this.updateEntry}>Update</button>
+                        </div>
+                    </form>
+
+                </fieldset>
             </div>
         );
     }
