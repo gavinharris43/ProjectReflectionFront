@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
-import axios from 'axios';
-import { REFLECTIONURL } from '../Constants.js'
 //import { BrowserRouter, Route, Link } from 'react-router-dom';
 class TraineeFull extends Component {
+
     constructor() {
         super();
         this.state = {
@@ -54,6 +53,7 @@ class TraineeFull extends Component {
         startDate: this.refs.itemMonth.value = ""
     }
 
+
     render() {
         let reviews = [];
         let RAG = [];
@@ -66,26 +66,26 @@ class TraineeFull extends Component {
         }
         for (let i = 0; i < 12; i++) {
             reviews.push(
-                <fieldset key={'Trainee: ' + i + ' Review ' + i}>
+                <fieldset key={'Trainee: ' + i + ' Review ' + i}>>
                     <legend>Review Date</legend>
                     <div className="ReviewColumn">
-                        How did you feel your week went? <br /><br />
+                        How did you feel your week went? <br/><br/>
                         {this.props.lastReview} /10
                     </div>
                     <div className="ReviewColumn">
-                        What went well last week? <br /><br />
+                       What went well last week? <br/><br/>
+                       {'lorem ipsum'}
+                    </div>
+                    <div className="ReviewColumn">
+                        How do you plan to show more of this? <br/><br/>
                         {'lorem ipsum'}
                     </div>
                     <div className="ReviewColumn">
-                        How do you plan to show more of this? <br /><br />
+                        What did not go well last week? <br/><br/>
                         {'lorem ipsum'}
                     </div>
                     <div className="ReviewColumn">
-                        What did not go well last week? <br /><br />
-                        {'lorem ipsum'}
-                    </div>
-                    <div className="ReviewColumn">
-                        How do you plan to avoid this issue again? <br /><br />
+                        How do you plan to avoid this issue again? <br/><br/>
                         {'lorem ipsum'}
                     </div>
                 </fieldset>
@@ -94,12 +94,11 @@ class TraineeFull extends Component {
         return (
             <div className="MainBar">
                 <fieldset className="">
-                    <legend>{" " + this.state.trainee.firstName + " " + this.state.trainee.lastName + " "}</legend>
-                    <div>
-                        {this.props.id}
-                        Metrics</div>
+                    <legend>Trainee</legend>
+                    <div>Metrics</div>
                     {reviews}
                 </fieldset>
+
                 <fieldset className="">
                     <legend>Modify</legend>
                     <form className="UpdateForm">
@@ -120,6 +119,7 @@ class TraineeFull extends Component {
                     </form>
 
                 </fieldset>
+
             </div>
         );
     }
