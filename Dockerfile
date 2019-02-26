@@ -1,13 +1,5 @@
-FROM node
-WORKDIR /build
-RUN npm install -g serve
-
-ENTRYPOINT ["/usr/local/bin/serve", "-s", "build", "-l" , "3000"]
-EXPOSE 3000
-
-COPY package.json package.json
-RUN npm install
-
-COPY . .
-RUN npm run build --production
-
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
