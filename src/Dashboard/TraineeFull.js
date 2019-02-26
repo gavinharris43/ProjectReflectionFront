@@ -7,7 +7,8 @@ class TraineeFull extends Component {
     constructor() {
         super();
         this.state = {
-            trainee: ""
+            trainee: "",
+            cohort: ""
         }
         this.update = () => {
             axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
@@ -25,6 +26,11 @@ class TraineeFull extends Component {
                 trainee = trainee[0];
                 this.setState({ trainee });
             })
+        axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READCOHORTURL)
+            .then(res2 => {
+                let cohort = res2.data;
+                this.setState({ cohort });
+            })
     }
 
     deleteEntry = () => {
@@ -36,13 +42,14 @@ class TraineeFull extends Component {
 
     updateEntry = (e) => {
         e.preventDefault();
+        console.log(this.refs.cohortHack.value);
         axios.put(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.UPDATETRAINEEURL + "/" + this.props.id, {
             firstName: this.refs.itemFirstName.value,
             lastName: this.refs.itemLastName.value,
             email: this.refs.itemEmail.value,
             password: this.refs.itemPassword.value,
-            confirmPassword: this.refs.itemConfirmPassword.value,
-            startDate: this.refs.itemMonth.value
+            startDate: this.refs.itemMonth.value,
+            cohortId: this.refs.cohortHack.value
         }).then(response => {
             this.update();
         });
@@ -50,11 +57,11 @@ class TraineeFull extends Component {
         lastName: this.refs.itemLastName.value = ""
         email: this.refs.itemEmail.value = ""
         password: this.refs.itemPassword.value = ""
-        confirmPassword: this.refs.itemConfirmPassword.value = ""
         startDate: this.refs.itemMonth.value = ""
     }
 
     render() {
+        let cohortList = []
         let reviews = [];
         let RAG = [];
         if (this.props.lastReview > 7) {
@@ -91,6 +98,9 @@ class TraineeFull extends Component {
                 </fieldset>
             )
         }
+        for (let i = 0; i < this.state.cohort.length; i++) {
+            cohortList.push(<option>{this.state.cohort[i].cohortId}</option>)
+        }
         return (
             <div className="MainBar">
                 <fieldset className="">
@@ -104,19 +114,24 @@ class TraineeFull extends Component {
                     <legend>Modify</legend>
                     <form className="UpdateForm">
                         <div>
-                            <input className="AccountUpdate" ref="itemFirstName" type="text" id="" placeholder="First Name" required />
-                            <input className="AccountUpdate" ref="itemLastName" type="text" id="" placeholder="Last Name" required />
+                            <input className="AccountUpdate" ref="itemFirstName" type="text" id="UpdateFirst" placeholder="First Name" required />
+                            <input className="AccountUpdate" ref="itemLastName" type="text" id="UpdateLast" placeholder="Last Name" required />
                         </div>
                         <input className="AccountUpdate" ref="itemEmail" type="email" id="emailBox" placeholder="Email Address" required />
                         <div>
                             <input className="AccountUpdate" ref="itemPassword" type="password" id="passwordBox" placeholder="Password" required />
-                            <input className="AccountUpdate" ref="itemConfirmPassword" type="password" id="passwordBoxConfirm" placeholder="Confirm Password" required />
                         </div>
                         <input className="AccountUpdate" ref="itemMonth" type="month" required />
+                        <div>
+                            <select ref="cohortHack">
+                                {cohortList}
+                            </select>
+                        </div>
                         <div>
                             <button onClick={this.deleteEntry}>Delete</button>
                             <button onClick={this.updateEntry}>Update</button>
                         </div>
+
                     </form>
 
                 </fieldset>
