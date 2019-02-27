@@ -16,8 +16,8 @@ class Dashboard extends Component {
   componentDidMount() {
     axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
       .then(res2 => {
-        if (this.props.cohortId !== undefined) {
-          trainees = res2.data.filter(o => String(o.cohortId) === String((this.props.cohortId)));
+        if (this.props.cohortId) {
+          trainees = res2.data.filter(o => String(o.startDate).toLowerCase().includes(String(this.props.cohortId).toLowerCase()));
         } else {
           trainees = res2.data;
         }
@@ -40,9 +40,7 @@ class Dashboard extends Component {
       )
     }
     return (
-
       <div className="MainBar">
-        {console.log(this.state.trainees)}
         <header>Trainees</header>
         <div>Search</div>
         {trainee}

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Logo from './QA Consulting.png';
 import './Account.css';
 
-class Register extends Component {
+class RegisterTrainer extends Component {
 
     constructor() {
         super();
@@ -17,15 +17,13 @@ class Register extends Component {
     }
 
     createAccount = (e) => {
-        axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.CREATETRAINEEURL, {
+        axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.CREATETRAINERURL, {
             firstName: this.refs.itemFirstName.value,
             lastName: this.refs.itemLastName.value,
             email: this.refs.itemEmail.value,
             password: this.refs.itemPassword.value,
             confirmPassword: this.refs.itemConfirmPassword.value,
-            startDate: this.refs.itemMonth.value
         }).then(response => {
-            window.location.href="./";
         });
     }
 
@@ -48,27 +46,12 @@ class Register extends Component {
                     <div className="InputBoxContainer">
                         <input className="AccountInput" ref="itemConfirmPassword" type="password" id="passwordBoxConfirm" placeholder="Confirm Password" required />
                     </div>
-                    <div className="InputBoxContainer">
-                        Starting Month <br />
-                        <select className="AccountInput" ref="itemMonth">
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option>
-                            <option>April</option>
-                            <option>May</option>
-                            <option>June</option>
-                            <option>July</option>
-                            <option>August</option>
-                            <option>September</option>
-                            <option>October</option>
-                            <option>November</option>
-                            <option>December</option>
-                        </select>
-                    </div>
                 </div>
                 <div>
                     <button onClick={this.createAccount} id="Register-Button-Two">Register</button>
-                    <Link to="/"><button onClick={this.update} id="Cancel-Button">Cancel</button></Link>
+                    <Link to="/">
+                        <button onClick={this.update} id="Cancel-Button">Cancel</button>
+                    </Link>
                     <Link to="/dashboard"><div>Dashboard for now</div></Link>
                     <Link to="/feedbackform"><div>Feedback for now</div></Link>
                 </div>
@@ -80,4 +63,4 @@ class Register extends Component {
 }
 
 
-export default Register;
+export default RegisterTrainer;

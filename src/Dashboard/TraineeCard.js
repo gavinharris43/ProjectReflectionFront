@@ -1,9 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function TraineeCard({ id, name, metrics, lastReview, averageReview, match }) {
-    
+
 
     let RAG = [];
     if (lastReview > 7) {
@@ -17,7 +16,10 @@ function TraineeCard({ id, name, metrics, lastReview, averageReview, match }) {
     return (
         <fieldset className="TraineeCard">
             <legend>
-                <Link to={"/dashboard/trainee/" + id}>{name}</Link>
+                <Link to={"/dashboard" +
+                    "/trainee" +
+                    "/" +
+                    id}>{"- " + name + " -"}</Link>
             </legend>
 
             <div className="row">
@@ -26,7 +28,7 @@ function TraineeCard({ id, name, metrics, lastReview, averageReview, match }) {
                 <div className="ReviewColumn">Average Review <br /> {averageReview} /10</div>
                 <div className="ReviewColumn">{RAG}</div>
             </div>
-        
+
 
         </fieldset>
     );

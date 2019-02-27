@@ -28,7 +28,6 @@ export const REFLECTIONURL = {
     //FORM
     CREATEFORMURL:"/createForm",
     //userType
-    TRAINER:"Trainer",
-    TRAINEE:"Trainee"
+    TRAINER:"Trainer"
 
 }

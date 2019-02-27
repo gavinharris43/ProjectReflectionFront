@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div className = "App">
           <Route exact path={"/"} component={Login} />
           <Route exact path={"/logout"} component={Logout} />
           <Route path={"/register"} component={Register} />

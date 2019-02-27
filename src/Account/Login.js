@@ -24,17 +24,15 @@ class Login extends Component {
             .then((response) => {
                 if (response.data.email === this.state.email) {
 
-                    sessionStorage.setItem("loggedUser", response.data.email );
-                    sessionStorage.setItem("type", response.data.type);
+                    sessionStorage.setItem("loggedUser", response.data.email);
+                    sessionStorage.setItem("startDate", response.data.startDate);
 
-                 if(sessionStorage.getItem("type"===REFLECTIONURL.TRAINEE ) || sessionStorage.getItem("loggedUser").endsWith("@academytrainee.com")){
-                        window.location.href="./feedbackform";
-                    } 
-                    else if (sessionStorage.getItem("type"===REFLECTIONURL.TRAINER) || sessionStorage.getItem("loggedUser").endsWith("@qa.com")){
-                        window.location.href="./dashboard";
-                    }
-                    else{
-                    window.location.reload();
+                    if (sessionStorage.getItem("startDate") !== REFLECTIONURL.TRAINER) {
+                        window.location.href = "./feedbackform";
+                    }else if (sessionStorage.getItem("startDate") === REFLECTIONURL.TRAINER) {
+                        window.location.href = "./dashboard";
+                    }else {
+                        window.location.reload();
                     }
 
                 }
