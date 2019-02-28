@@ -7,12 +7,13 @@ class TraineeFull extends Component {
         super();
         this.state = {
             trainee: "",
-            cohort: ""
+            allForms: [],
+            forms: []
         }
         this.update = () => {
             axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
                 .then(res => {
-                    let trainee = res.data.filter(o => String(o.traineeId) === String(this.props.id));
+                    let trainee = res.data.filter(o => String(o.email) === String(this.props.id));
                     trainee = trainee[0];
                     this.setState({ trainee });
                 })
@@ -21,14 +22,15 @@ class TraineeFull extends Component {
     componentDidMount() {
         axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
             .then(res => {
-                let trainee = res.data.filter(o => String(o.traineeId) === String(this.props.id));
+                let trainee = res.data.filter(o => String(o.email) === String(this.props.id));
                 trainee = trainee[0];
                 this.setState({ trainee });
             })
-        axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READCOHORTURL)
-            .then(res2 => {
-                let cohort = res2.data;
-                this.setState({ cohort });
+        axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READFORMSURL)
+            .then(res3 => {
+                let forms = res3.data.filter(o => String(o.email) === String(this.props.id));
+                let allForms = res3.data;
+                this.setState({ forms, allForms });
             })
     }
 
@@ -47,9 +49,6 @@ class TraineeFull extends Component {
         if (!this.refs.itemLastName.value.length) {
             this.refs.itemLastName.value = this.state.trainee.lastName;
         }
-        if (!this.refs.itemEmail.value.length) {
-            this.refs.itemEmail.value = this.state.trainee.email;
-        }
         if (!this.refs.itemPassword.value.length) {
             this.refs.itemPassword.value = this.state.trainee.password;
         }
@@ -57,15 +56,21 @@ class TraineeFull extends Component {
             this.refs.itemMonth.value = this.state.trainee.startDate;
         }
 
-        axios.put(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.UPDATETRAINEEURL + "/" + this.props.id, {
-            firstName: this.refs.itemFirstName.value,
-            lastName: this.refs.itemLastName.value,
-            email: this.refs.itemEmail.value,
-            password: this.refs.itemPassword.value,
-            startDate: this.refs.itemMonth.value,
-        }).then(response => {
-            this.update();
-        });
+
+
+        axios.delete(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.DELETETRAINEEURL + "/" + this.props.id)
+            .then(res => {
+                axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.CREATETRAINEEURL, {
+                    firstName: this.refs.itemFirstName.value,
+                    lastName: this.refs.itemLastName.value,
+                    email: this.state.trainee.email,
+                    password: this.refs.itemPassword.value,
+                    startDate: this.refs.itemMonth.value,
+                    currentHowsYourWeek: this.state.trainee.currentHowsYourWeek
+                }).then(response => {
+                    window.location.href = "/dashboard"+"/trainee/" + this.props.id;
+                });
+            });
     }
 
     render() {
@@ -79,29 +84,29 @@ class TraineeFull extends Component {
             RAG.push(<div className="RAG" id="Amber" />);
         }
         if (!(this.state.trainee.startDate === "Trainer")) {
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < this.state.forms.length; i++) {
                 reviews.push(
                     <fieldset key={'Trainee: ' + i + ' Review ' + i}>
                         <legend>Review Date</legend>
                         <div className="ReviewColumn">
                             How did you feel your week went? <br /><br />
-                            {this.props.lastReview} /10
+                            {this.state.forms[i].howsYourWeek} /10
                     </div>
                         <div className="ReviewColumn">
                             What went well last week? <br /><br />
-                            {'lorem ipsum'}
+                            {this.state.forms[i].whatWentWell}
                         </div>
                         <div className="ReviewColumn">
                             How do you plan to show more of this? <br /><br />
-                            {'lorem ipsum'}
+                            {this.state.forms[i].howToKeepDoingWell}
                         </div>
                         <div className="ReviewColumn">
                             What did not go well last week? <br /><br />
-                            {'lorem ipsum'}
+                            {this.state.forms[i].whatWentBad}
                         </div>
                         <div className="ReviewColumn">
                             How do you plan to avoid this issue again? <br /><br />
-                            {'lorem ipsum'}
+                            {this.state.forms[i].howToStopDoingBad}
                         </div>
                     </fieldset>
                 )
@@ -111,8 +116,9 @@ class TraineeFull extends Component {
             <div className="MainBar">
                 <fieldset className="">
                     <legend>{" " + this.state.trainee.firstName + " " + this.state.trainee.lastName + " "}</legend>
-                    Cohort: - {this.state.trainee.startDate} <br/>
-                    Email: - {this.state.trainee.email}<br/>
+                    Cohort: - {this.state.trainee.startDate} <br />
+                    Email: - {this.state.trainee.email}<br />
+                    Email: - {this.state.trainee.password}<br />
                     <div>Metrics</div>
                     {reviews}
                 </fieldset>

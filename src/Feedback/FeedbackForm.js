@@ -9,16 +9,42 @@ import Logout from '../Logout';
 class FeedbackForm extends Component {
 
     submitForm = (e) => {
-        axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.FORMAPIURL + REFLECTIONURL.CREATEFORMURL, {
+        axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.CREATEFORMURL, {
+            email: sessionStorage.getItem("loggedUser"),
             weekNumber: this.refs.weekNumber.value,
             howsYourWeek: this.refs.howsYourWeek.value,
             whatWentWell: this.refs.whatWentWell.value,
             howToKeepDoingWell: this.refs.howToKeepDoingWell.value,
             whatWentBad: this.refs.whatWentBad.value,
             howToStopDoingBad: this.refs.howToStopDoingBad.value
-        }).then(response => {
+        })
+        let trainee = [];
+        axios.get(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.READTRAINEEURL)
+            .then(res => {
+                trainee = res.data.filter(o => String(o.email) === String(sessionStorage.getItem("loggedUser")));
+                trainee = trainee[0];
+            })
             Logout();
-        });
+        axios.delete(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.DELETETRAINEEURL + "/" + sessionStorage.getItem("loggedUser"))
+            .then(res => {
+                
+                /*
+                axios.post(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.CREATETRAINEEURL, {
+                    firstName: trainee.firstName,
+                    lastName: trainee.lastName,
+                    email: trainee.email,
+                    password: trainee.password,
+                    confirmPassword: trainee.confirmPassword,
+                    startDate: trainee.startDate,
+                    currentHowsYourWeek: this.refs.howsYourWeek.value
+                }).then(response => {
+                    Logout();
+                });
+                */
+            });
+
+
+
     }
 
     render() {

@@ -5,7 +5,6 @@ export const REFLECTIONURL = {
     BASEURL: "http://localhost",
     WEBSITE:":3000",
     APIURL:":8081/api",
-    FORMAPIURL:":8083/reflectionForm",
     //Trainee
     CREATETRAINEEURL: "/createTrainee",
     READTRAINEEURL: "/getAllTrainees",
@@ -27,6 +26,7 @@ export const REFLECTIONURL = {
     DELETECOHORTURL:"/deleteCohort",
     //FORM
     CREATEFORMURL:"/createForm",
+    READFORMSURL:"/getAllForms",
     //userType
     TRAINER:"Trainer"
 

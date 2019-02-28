@@ -4,6 +4,7 @@ import { REFLECTIONURL } from '../Constants.js'
 import './Dashboard.css';
 import TraineeCard from './TraineeCard.js';
 let trainees = []
+let type = []
 class Dashboard extends Component {
   constructor() {
     super();
@@ -25,24 +26,31 @@ class Dashboard extends Component {
       })
   }
 
+  deleteCohort() {
+    for (let i = 0; i < this.state.trainees.length; i++) {
+      axios.delete(REFLECTIONURL.BASEURL + REFLECTIONURL.APIURL + REFLECTIONURL.DELETETRAINEEURL + "/" + this.state.trainees[i].email)
+        .then(res => {
+        });
+    }
+  }
+
   render() {
     let trainee = [];
     for (let i = 0; i < this.state.trainees.length; i++) {
       trainee.push(
         <TraineeCard
           key={'Trainee: ' + i}
-          id={this.state.trainees[i].traineeId}
+          id={this.state.trainees[i].email}
           name={this.state.trainees[i].firstName + ' ' + this.state.trainees[i].lastName}
           metrics="Metrics"
-          lastReview={this.state.trainees[i].currentHowsYourWeek}
+          currentHowsYourWeek={this.state.trainees[i].currentHowsYourWeek}
           averageReview={this.state.trainees[i].averageHowsYourWeek}
         />
       )
     }
     return (
       <div className="MainBar">
-        <header>Trainees</header>
-        <div>Search</div>
+        <header>Accounts</header>
         {trainee}
       </div>
     );
